@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+
+    {% extends 'base.html' %}
+
+    {% block titulo %}
+    Resultado de Busqueda
+    {% endblock %}
+
+    {% block contenido_dinamico %}
+
+    {% for article_1 in article_1 %}
+
+    <div class="card" style="width: 18rem;">
+        {% if article_1.image %}
+        <img src="{{article_1.image.url}}" class="card-img-top">
+        {% else %}
+        <img src="/media/images/Cotillon_El_Bau.jpg/" class ="card-img-top">
+        {% endif %}
+        <div class="card-body">
+            <h1 class="card-text">{{article_1.name}}.</h1>
+            <p class="card-text">Su precio es, {{article_1.price}}</p>
+            <p class="card-text">{{article_1.description}}</p>
+            {% if request.user.is_authenticated %}
+            <a href="/detalle-libreria/{{article_1.id}}" class="btn btn-info">Detalles</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% for article_2 in article_2 %}
+
+    <div class="card" style="width: 18rem;">
+        {% if article_2.image %}
+        <img src="{{article_2.image.url}}" class="card-img-top">
+        {% else %}
+        <img src="/media/images/Cotillon_El_Bau.jpg/" class ="card-img-top">
+        {% endif %}
+        <div class="card-body">
+            <h1 class="card-text">{{article_2.name}}.</h1>
+            <p class="card-text">Su precio es, {{article_2.price}}</p>
+            <p class="card-text">{{article_2.description}}</p>
+            {% if request.user.is_authenticated %}
+            <a href="/detalle-papeleria/{{article_2.id}}" class="btn btn-info">Detalles</a>
+            {% endif %}
+        </div>   
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% for article_3 in article_3 %}
+
+    <div class="card" style="width: 18rem;">
+        {% if article_3.image %}
+        <img src="{{article_3.image.url}}" class="card-img-top">
+        {% else %}
+        <img src="/media/images/Cotillon_El_Bau.jpg/" class ="card-img-top">
+        {% endif %}
+        <div class="card-body">
+            <h1 class="card-text">{{article_3.name}}.</h1>
+            <p class="card-text">Su precio es, {{article_3.price}}</p>
+            <p class="card-text">{{article_3.description}}</p>
+            {% if request.user.is_authenticated %}
+            <a href="/detalle-artistica/{{article_3.id}}" class="btn btn-info">Detalles</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% endblock %}
+</body>
+
+</html>

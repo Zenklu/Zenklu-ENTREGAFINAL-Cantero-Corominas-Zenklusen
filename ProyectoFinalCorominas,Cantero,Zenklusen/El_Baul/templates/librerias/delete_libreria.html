@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+
+    {% extends 'base.html' %}
+
+    {% block titulo %}
+    Eliminar - Libreria    
+    {% endblock %}
+
+    {% block contenido_dinamico %}
+
+    <h3>Esta seguro que desea Eliminar este Articulo en Libreria?</h3>
+
+    
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h1 class="card-text">{{libreria.name}}.</h1>
+                <p class="card-text">Su precio es $ {{libreria.price}}</p>
+                <p class="card-text">{{libreria.description}}</p>
+            </div>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+
+        <p><input type="submit" value="Eliminar"> </p>
+    </form>
+
+
+
+    {% endblock %}
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+
+<body>
+
+    {% extends 'base.html' %}
+
+    {% block titulo %}
+    Papeleria    
+    {% endblock %}
+
+    {% block contenido_dinamico %}
+
+    {% for papeleria in papelerias %}
+
+    <div class="card" style="width: 18rem;">
+        {% if papeleria.image %}
+        <img src="{{papeleria.image.url}}" class="card-img-top">
+        {% else %}
+        <img src="/media/images/Cotillon_El_Bau.jpg/" class ="card-img-top">
+        {% endif %}
+        <div class="card-body">
+            <h1 class="card-text">{{papeleria.name}}.</h1>
+            <p class="card-text">Su precio es $ {{papeleria.price}}</p>
+            <p class="card-text">{{papeleria.description}}</p>
+            {% if request.user.is_authenticated %}
+            <a href="/detalle-papeleria/{{papeleria.id}}" class="btn btn-info">Detalles</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% endblock %}
+</body>
+
+</html>

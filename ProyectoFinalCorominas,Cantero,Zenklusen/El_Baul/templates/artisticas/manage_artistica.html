@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    {% extends 'base.html' %}
+
+    {% block titulo %}
+    Borrar Libreria
+    {% endblock %}
+
+    {% block contenido_dinamico %}
+    {% if user.is_superuser %}
+
+        <h4> Si desea crear un nuevo articulo en Libreria presione
+            <a href="/nueva-artistica/" class="btn btn-primary">Crear</a>
+        </h4>
+    
+
+            {% for artistica in object_list %}
+        <div class="card" style="width: 18rem;">
+            {% if artistica.image %}
+            <img src="{{artistica.image.url}}" class="card-img-top">
+            {% else %}
+            <img src="/media/images/Cotillon_El_Bau.jpg/" class ="card-img-top">
+            {% endif %}
+            <div class="card-body">
+                <h6>GESTION</h6>
+                <h1 class="card-text">{{artistica.name}}.</h1>
+                <p class="card-text">Su precio es $ {{artistica.price}}</p>
+                <p class="card-text">{{artistica.description}}</p>
+                <a href="/eliminar-artistica/{{artistica.id}}" class="btn btn-danger">Eliminar</a>
+                <a href="/actualizar-artistica/{{artistica.id}}" class="btn btn-success">Actualizar</a>
+
+
+            </div>
+        </div>
+
+            {% endfor %}
+    {% else %} <h3>Usted no tiene permisos para realizar esta acción</h3>
+    {% endif %}
+
+    {% endblock %}
+
+
+</body>
+
+</html>
